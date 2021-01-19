@@ -46,6 +46,8 @@ while True:  # main menu
             guessed.append(guess)
             if guess not in word:
                 lives -= 1
+            if lives == 0:
+                print("You lost!")
 
     else:
         print("Wrong choice! You entered: ", ans)
