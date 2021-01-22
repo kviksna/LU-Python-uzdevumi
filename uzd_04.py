@@ -47,8 +47,8 @@ while True:  # main menu
             if guess not in word:
                 lives -= 1
             if lives == 0:
+				print(word)
                 print("You lost!")
-
     else:
         print("Wrong choice! You entered: ", ans)
 print("Exiting game... Bye!")
