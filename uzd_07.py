@@ -37,9 +37,21 @@ def user_add():
     users.append(User(name=name, user_name=user_name, email=email, created=created))
     print("User added at:", created)
 
-def user_search():
-    search_str = input("\nSearch user by Name, Email or Username: ")
-    return 0
+def user_idx_search():  # search for 1st occurance!
+    found_idx = -1  # not found yet
+    search_str = input("\nSearch user by Name, Email or Username: ").lower()
+    for i in range(len(users)):
+        if search_str in users[i].name.lower():
+            print(f"[{search_str}] found at Name[{users[i].name}]")
+            return i
+        if search_str in users[i].email.lower():
+            print(f"[{search_str}] found at Email[{users[i].email}]")
+            return i
+        if search_str in users[i].user_name:
+            print(f"[{search_str}] found at Username[{users[i].user_name}]")
+            return i
+    return found_idx
+
 
 while True:  # main menu
     # print("")  # New line
@@ -56,14 +68,19 @@ while True:  # main menu
     if ans == 4:
         break  # Quit main menu loop
     elif ans == 1:
-        user_search()
+        i = user_idx_search()
+        if i != -1:
+            print("User found: ", users[i].name, users[i].user_name, users[i].email, users[i].created)
+        else:
+            print("User not found!")
     elif ans == 2:
         user_add()
     elif ans == 3:
-        user_to_del = user_search()
-        if input(f"Delete user [{user_to_del}]={users[user_to_del].name} ? (Y/n): ") == "Y":
-            users.pop(user_to_del)
-            print("User deleted!")
+        user_to_del = user_idx_search()
+        if user_to_del != -1:  # not found
+            if input(f"Delete user [{user_to_del}]={users[user_to_del].name} ? (Y/n): ") == "Y":
+                users.pop(user_to_del)
+                print("User deleted!")
     elif ans == 5:
         # print("\nStored users: ")
         for i in users:
