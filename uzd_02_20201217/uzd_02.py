@@ -23,7 +23,7 @@ while winUser < 3 and winComp < 3:
         print("Exiting...")
         quit()  # terminates program execution
     if skUser not in [1, 2, 3]:
-        print("Wrong choice: ", skUser)
+        print(f"Wrong choice: {skUser}\n")
         continue  # to new loop cycle
     skComp = randint(1, 3)
     print(f"{words[skUser]} vs. {words[skComp]}")
@@ -35,7 +35,7 @@ while winUser < 3 and winComp < 3:
     if (skComp == 1 and skUser == 3) or (skComp == 2 and skUser == 1) or (skComp == 3 and skUser == 2):
         winComp += 1
         print("Computer wins this round.")
-    print(f"{winUser}:{winComp}")
+    print(f"{winUser}:{winComp}\n")
 
 if winUser == 3:
     print("User wins!")
