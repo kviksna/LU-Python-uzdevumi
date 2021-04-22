@@ -23,7 +23,7 @@ def add_visit(request):
 
         visit = Visit(
             name=request.POST['name'],
-            date=request.POST['date'],
+            #date=request.POST['date'],
             reason=request.POST['reason'],
         )
 

@@ -3,15 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <title>Visits</title>
+    <style>
+        .styled-table {
+            border-collapse: collapse;
+            margin: 25px 0;
+            font-size: 0.9em;
+            font-family: sans-serif;
+            min-width: 400px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+            border-radius: 6px;
+            -moz-border-radius: 6px;
+        }
+        .styled-table thead tr {
+            background-color: #2980b9;
+            color: #ffffff;
+            text-align: left;
+        }
+        .styled-table th,
+        .styled-table td {
+            padding: 12px 15px;
+        }
+        .styled-table tr:hover {background-color: #303030;}
+        .styled-table td:hover {background-color: #404040;}
+        .styled-table tbody tr {
+            border-bottom: 1px solid #dddddd;
+        }
+        .styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid #2980b9;
+        }
+    </style>
 </head>
 <body bgcolor="black" style="color:#c0c0c0">
+    <form action="/add_visit" method="post">
+        {% csrf_token %}
+    <table class="styled-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>&nbsp;</th>
+                <th>&nbsp;</th>
+            </tr>
+        </thead>
+        <tbody>
     {% for visit in visits %}
-        <p>
-            Name: <strong>{{ visit.name }}</strong> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Date: {{ visit.date }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            Reason: {{ visit.reason }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            [<a href="">Edit</a>] &nbsp;&nbsp;&nbsp; [<a href="">Delete</a>]
-        </p>
+        <tr>
+            <td><strong>{{ visit.id }}</strong></td>
+            <td>{{ visit.name }}</td>
+            <td>{{ visit.reason }}</td>
+            <td>[<a href="?edit={{ visit.id }}">Edit</a>]</td>
+            <td>[<a href="?del={{ visit.id }}">Delete</a>]</td>
+        </tr>
     {% endfor %}
+        <tr>
+            <td></td>
+            <td><input type="text" name="name" placeholder="Username"></td>
+            <td><input type="email" name="reason" placeholder="Email"></td>
+            <td colspan="2"><input type="hidden" name="date" value=""><input type="submit" value="Add/Save"></td>
+        </tr>
+        </tbody>
+    </table>
+    </form>
 </body>
 </html>
