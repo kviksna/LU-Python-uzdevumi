@@ -56,10 +56,19 @@
         </tr>
     {% endfor %}
         <tr>
-            <td>New:</td><!-Replace with action name!>
+            {% if edit_id %}
+            <td>Edit ID: {{ edit_id }}<input type="hidden" name="edit_id" value="{{ edit_id }}"></td>
+            <td><input type="text" name="name" value="{{ edit_name }}"></td>
+            <td><input type="email" name="reason" value="{{ edit_email }}"></td>
+            <td colspan="2"><input type="hidden" name="date" value="">
+                <input type="submit" value="Save"></td>
+            {% else %}
+            <td>New:</td>
             <td><input type="text" name="name" placeholder="Username"></td>
             <td><input type="email" name="reason" placeholder="Email"></td>
-            <td colspan="2"><input type="hidden" name="date" value=""><input type="submit" value="Add|Save"></td>
+            <td colspan="2"><input type="hidden" name="date" value="">
+                <input type="submit" value="Add"></td>
+            {% endif %}
         </tr>
         </tbody>
     </table>
