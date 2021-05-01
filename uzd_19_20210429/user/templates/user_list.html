@@ -5,11 +5,12 @@
     <title>Users</title>
 </head>
 <body bgcolor="black" style="color:#c0c0c0">
+    <a href="/add_user">Add</a> new user
     <ul>
         {% for user in object_list %}
             <li>
             ID: {{ user.id }} <br>
-            Username: <strong>{{ user.username }}</strong><br>
+            Username: <strong><a href="/get_user/{{ user.id }}">{{ user.username }}</a></strong><br>
             E-mail: {{ user.email }}
             </li>
         {% endfor %}

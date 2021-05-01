@@ -1,16 +1,31 @@
 from django.shortcuts import render, HttpResponse
 from user.models import User
 from django.views.generic import View, ListView, FormView, DetailView
+from django.urls import reverse_lazy
+from user.forms import UserForm
 
 
 class UserListView(ListView):
     model = User
-    template_name = 'index_list.html'
+    template_name = 'user_list.html'
 
 
 class UserDetailView(DetailView):
     model = User
     template_name = 'user_detail.html'
+
+
+class AddUserView(FormView):
+
+    form_class = UserForm
+    template_name = 'add_user.html'
+    success_url = reverse_lazy('user-list')
+
+    def form_valid(self, form):
+        form.save()
+
+        response = super().form_valid(form)
+        return response
 
 
 def index(request):
