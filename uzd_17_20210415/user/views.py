@@ -15,18 +15,17 @@ def index(request):
 
         user = User(
             name=request.POST['name'],
-            date=request.POST['date'],
-            reason=request.POST['reason'],
+            email=request.POST['email'],
         )
 
         edit_id = int(request.POST.get('edit_id', 0))
         if edit_id > 0:
             user = User.objects.get(id=edit_id)
             user.name = request.POST['name']
-            user.reason = request.POST['reason']
-            context['info'] = f"eddited {user.name} ({user.reason}) with ID: {user.id}"
+            user.email = request.POST['email']
+            context['info'] = f"eddited {user.name} ({user.email}) with ID: {user.id}"
         else:
-            context['info'] = f"added {user.name} ({user.reason}) with ID: {user.id}"
+            context['info'] = f"added {user.name} ({user.email}) with ID: {user.id}"
 
         user.save()
 
@@ -36,14 +35,14 @@ def index(request):
         if del_id > 0:
             user = User.objects.get(id=del_id)
             user.delete()
-            context['info'] = f"deleted {user.name} ({user.reason}) with ID: {user.id}"
+            context['info'] = f"deleted {user.name} ({user.email}) with ID: {user.id}"
 
         edit_id = int(request.GET.get('edit', 0))
         if edit_id > 0:
             user = User.objects.get(id=edit_id)
             context['edit_id'] = edit_id
             context['edit_name'] = user.name
-            context['edit_email'] = user.reason
+            context['edit_email'] = user.email
 
     return render(
         template_name='index.html',
