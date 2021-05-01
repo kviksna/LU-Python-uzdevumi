@@ -3,6 +3,7 @@ from user.models import User
 
 
 def index(request):
+    info_invalid = ''  # Valid value
 
     # View all objects
     user = User.objects.all()
@@ -13,21 +14,28 @@ def index(request):
 
     if request.method == 'POST':
 
+        posted_name = request.POST.get('name', '')
+        if posted_name == '':
+            info_invalid = 'Username can not be empty!'
+
         user = User(
-            name=request.POST['name'],
-            email=request.POST['email'],
+            name=request.POST.get('name', ''),
+            email=request.POST.get('email', ''),
         )
 
         edit_id = int(request.POST.get('edit_id', 0))
         if edit_id > 0:
             user = User.objects.get(id=edit_id)
-            user.name = request.POST['name']
-            user.email = request.POST['email']
+            user.name = request.POST.get('name', '')  # request.POST['name']
+            user.email = request.POST.get('email', '')
             context['info'] = f"eddited {user.name} ({user.email}) with ID: {user.id}"
         else:
             context['info'] = f"added {user.name} ({user.email}) with ID: {user.id}"
 
-        user.save()
+        if info_invalid == '':
+            user.save()
+        else:
+            context['info'] = info_invalid
 
     elif request.method == 'GET':
 
