@@ -82,7 +82,7 @@ while True:  # main menu
                 users.pop(user_to_del)
                 print("User deleted!")
     elif ans == 5:
-        # print("\nStored users: ")
+        # print("\nStored user: ")
         for i in users:
             print(i.name, i.user_name, i.email, i.created)
     else:

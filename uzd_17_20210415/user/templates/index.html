@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Visits</title>
+    <title>Users</title>
     <style>
         .styled-table {
             border-collapse: collapse;
@@ -46,13 +46,13 @@
             </tr>
         </thead>
         <tbody>
-    {% for visit in visits %}
+    {% for user in user %}
         <tr>
-            <td><strong>{{ visit.id }}</strong></td>
-            <td>{{ visit.name }}</td>
-            <td>{{ visit.reason }}</td>
-            <td>[<a href="?edit={{ visit.id }}">Edit</a>]</td>
-            <td>[<a href="?del={{ visit.id }}">Delete</a>]</td>
+            <td><strong>{{ user.id }}</strong></td>
+            <td>{{ user.name }}</td>
+            <td>{{ user.reason }}</td>
+            <td>[<a href="?edit={{ user.id }}">Edit</a>]</td>
+            <td>[<a href="?del={{ user.id }}">Delete</a>]</td>
         </tr>
     {% endfor %}
         <tr>
@@ -60,14 +60,13 @@
             <td>Edit ID: {{ edit_id }}<input type="hidden" name="edit_id" value="{{ edit_id }}"></td>
             <td><input type="text" name="name" value="{{ edit_name }}"></td>
             <td><input type="email" name="reason" value="{{ edit_email }}"></td>
-            <td colspan="2"><input type="hidden" name="date" value="">
-                <input type="submit" value="Save"></td>
+            <td><input type="hidden" name="date" value=""><input type="submit" value="Save"></td>
+            <td>[<a href="/">Cancel</a>]</td>
             {% else %}
             <td>New:</td>
             <td><input type="text" name="name" placeholder="Username"></td>
             <td><input type="email" name="reason" placeholder="Email"></td>
-            <td colspan="2"><input type="hidden" name="date" value="">
-                <input type="submit" value="Add"></td>
+            <td colspan="2"><input type="hidden" name="date" value=""><input type="submit" value="Add"></td>
             {% endif %}
         </tr>
         </tbody>

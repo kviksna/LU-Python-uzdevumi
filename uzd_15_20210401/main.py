@@ -17,7 +17,7 @@ class User:
 
 
 app = flask.Flask(__name__)
-# users = []
+# user = []
 users = [
     User("Me", "my@e.mail"),
     User("Me2", "my2@e.mail"),
