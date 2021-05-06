@@ -59,14 +59,14 @@ def add_user(request):
         }
 
         return render(
-            template_name='user.html',
+            template_name='deposit.html',
             request=request,
             context=context,
 
         )
 
     return render(
-        template_name='form.html',
+        template_name='deposit_new.html',
         request=request
     )
 
@@ -80,7 +80,7 @@ def get_user(request, user_id):
     }
 
     return render(
-        template_name='user.html',
+        template_name='deposit.html',
         request=request,
         context=context,
 
@@ -117,13 +117,13 @@ def edit_user(request, user_id):
         }
 
         return render(
-            template_name='user.html',
+            template_name='deposit.html',
             request=request,
             context=context,
 
         )
 
     return render(
-        template_name='form.html',
+        template_name='deposit_new.html',
         request=request
     )

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bank</title>
+</head>
+<body bgcolor="black" style="color:#c0c0c0">
+    <a href="deposit/new">Add new deposit</a>
+    <ul>
+        {% for deposit in object_list %}
+            <li>
+                <a href="/deposit/{{ deposit.id }}">
+            Deposit: {{ deposit.deposit }}, Term: {{ deposit.term }}, Rate: {{ deposit.rate }}, Interest: X
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
